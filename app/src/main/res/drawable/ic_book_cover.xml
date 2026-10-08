@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Capa genérica usada pelas telas em Views (dados são simulados, sem imagens remotas). -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="180dp"
+    android:viewportWidth="120"
+    android:viewportHeight="180">
+    <path
+        android:fillColor="#6650A4"
+        android:pathData="M0,0h120v180h-120z" />
+    <path
+        android:fillColor="#4F378B"
+        android:pathData="M0,0h12v180h-12z" />
+    <path
+        android:fillColor="#E8DEF8"
+        android:pathData="M30,40h70v8h-70z M30,58h50v8h-50z" />
+    <path
+        android:fillColor="#D0BCFF"
+        android:pathData="M60,105 C52,98 42,96 32,97 L32,134 C42,133 52,135 60,141 Z" />
+    <path
+        android:fillColor="#EADDFF"
+        android:pathData="M60,105 C68,98 78,96 88,97 L88,134 C78,133 68,135 60,141 Z" />
+</vector>

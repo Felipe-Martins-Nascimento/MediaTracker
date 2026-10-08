@@ -1,0 +1,48 @@
+name: Build e testes
+
+# Roda a cada push na branch main e também sob demanda (botão "Run workflow" na aba Actions).
+# Serve para provar que o projeto compila e que os testes passam numa máquina limpa,
+# que é exatamente a situação de quem baixa o repositório pela primeira vez.
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+
+    steps:
+      - name: Baixar o código
+        uses: actions/checkout@v4
+
+      # O projeto pede toolchain JDK 25 (gradle/gradle-daemon-jvm.properties).
+      - name: Instalar o JDK 25
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '25'
+
+      # Instala o Android SDK e aceita as licenças; o Gradle baixa as plataformas que faltarem.
+      - name: Preparar o Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Permitir executar o gradlew
+        run: chmod +x gradlew
+
+      - name: Rodar testes unitários e compilar o app (debug)
+        run: ./gradlew testDebugUnitTest assembleDebug --stacktrace
+
+      - name: Guardar relatório dos testes
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: relatorio-de-testes
+          path: app/build/reports/tests/
+
+      - name: Guardar o APK para instalar no celular
+        uses: actions/upload-artifact@v4
+        with:
+          name: media-tracker-debug-apk
+          path: app/build/outputs/apk/debug/app-debug.apk

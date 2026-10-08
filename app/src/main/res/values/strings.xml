@@ -1,0 +1,126 @@
+<resources>
+    <string name="app_name">Media Tracker</string>
+
+    <!-- Tipos e status -->
+    <string name="type_book">Livro</string>
+    <string name="type_movie">Filme</string>
+    <string name="type_series">Série</string>
+    <string name="status_planned">Quero acompanhar</string>
+    <string name="status_in_progress">Em andamento</string>
+    <string name="status_completed">Concluído</string>
+
+    <!-- Progresso -->
+    <string name="progress_unknown_total">Total não informado</string>
+    <string name="progress_pages">%1$d de %2$d páginas</string>
+    <string name="progress_minutes">%1$d de %2$d minutos</string>
+    <string name="progress_episodes">%1$d de %2$d episódios</string>
+    <string name="units_pages">%1$d páginas</string>
+    <string name="units_minutes">%1$d minutos</string>
+    <string name="units_episodes">%1$d episódios</string>
+
+    <!-- Ações genéricas -->
+    <string name="action_back">Voltar</string>
+    <string name="action_retry">Tentar novamente</string>
+    <string name="action_cancel">Cancelar</string>
+    <string name="action_delete">Excluir</string>
+    <string name="action_edit">Editar</string>
+    <string name="action_share">Compartilhar</string>
+    <string name="action_search">Buscar</string>
+    <string name="action_search_books">Buscar livros</string>
+    <string name="action_more">Mais opções</string>
+    <string name="loading_description">Carregando</string>
+
+    <!-- Biblioteca -->
+    <string name="library_title">Minha biblioteca</string>
+    <string name="library_add_manual">Adicionar</string>
+    <string name="library_empty_title">Sua biblioteca está vazia</string>
+    <string name="library_empty_message">Busque livros ou adicione filmes e séries manualmente para começar a acompanhar.</string>
+    <string name="library_find_books">Buscar livros</string>
+    <string name="library_empty_filter_title">Nada por aqui</string>
+    <string name="library_empty_filter_message">Nenhum item corresponde ao filtro escolhido.</string>
+    <string name="library_error_title">Não foi possível carregar</string>
+    <string name="library_error_message">Houve um problema ao ler seus dados salvos.</string>
+    <string name="filter_all">Todos</string>
+    <string name="filter_in_progress">Em andamento</string>
+    <string name="filter_planned">Quero acompanhar</string>
+    <string name="filter_completed">Concluídos</string>
+    <string name="menu_views_demo">Telas em Views (XML)</string>
+
+    <!-- Busca -->
+    <string name="search_title">Buscar livros</string>
+    <string name="search_label">Título ou autor</string>
+    <string name="search_idle_title">Encontre um livro</string>
+    <string name="search_idle_message">Digite um título ou autor e toque em buscar. Os dados vêm da Open Library.</string>
+    <string name="search_short_title">Busca muito curta</string>
+    <string name="search_short_message">Digite pelo menos %1$d caracteres.</string>
+    <string name="search_empty_title">Nenhum resultado</string>
+    <string name="search_empty_message">Nada encontrado para \"%1$s\". Tente outro termo.</string>
+    <string name="search_error_network_title">Sem conexão</string>
+    <string name="search_error_network_message">Verifique sua internet e tente de novo.</string>
+    <string name="search_error_unknown_title">Algo deu errado</string>
+    <string name="search_error_unknown_message">Não conseguimos concluir a busca agora.</string>
+    <string name="search_add">Adicionar</string>
+    <string name="search_add_description">Adicionar %1$s à biblioteca</string>
+    <string name="search_in_library">Na biblioteca</string>
+
+    <!-- Detalhe -->
+    <string name="detail_not_found_title">Item não encontrado</string>
+    <string name="detail_not_found_message">Ele pode ter sido removido.</string>
+    <string name="detail_delete_title">Excluir item?</string>
+    <string name="detail_delete_message">\"%1$s\" será removido da sua biblioteca.</string>
+    <string name="detail_progress_title">Progresso</string>
+    <string name="detail_unknown_total_message">Este item ainda não tem um total. Informe o total para acompanhar o progresso.</string>
+    <string name="detail_set_total">Informar total</string>
+    <string name="detail_progress_slider_description">Ajustar progresso</string>
+    <string name="detail_decrease">−1</string>
+    <string name="detail_increase">+1</string>
+    <string name="detail_complete">Marcar como concluído</string>
+    <string name="detail_rating_title">Minha nota</string>
+    <string name="detail_rating_value">%1$d de 10</string>
+    <string name="detail_rating_none">Sem nota</string>
+    <string name="detail_rating_slider_description">Ajustar nota de 0 a 10</string>
+    <string name="detail_rating_clear">Remover nota</string>
+    <string name="detail_notes_title">Anotações</string>
+    <string name="cover_description">Capa de %1$s</string>
+    <string name="share_text">Estou acompanhando \"%1$s\" no Media Tracker (%2$d%% concluído).</string>
+    <string name="share_chooser">Compartilhar progresso</string>
+
+    <!-- Formulário -->
+    <string name="form_title_new">Novo item</string>
+    <string name="form_title_edit">Editar item</string>
+    <string name="form_type_label">Tipo</string>
+    <string name="form_field_title">Título</string>
+    <string name="form_field_author">Autor (opcional)</string>
+    <string name="form_field_director">Direção (opcional)</string>
+    <string name="form_field_creator">Criação (opcional)</string>
+    <string name="form_field_year">Ano (opcional)</string>
+    <string name="form_field_total_pages">Total de páginas</string>
+    <string name="form_field_total_minutes">Duração em minutos</string>
+    <string name="form_field_total_episodes">Total de episódios</string>
+    <string name="form_field_rating">Nota de 0 a 10 (opcional)</string>
+    <string name="form_field_notes">Anotações (opcional)</string>
+    <string name="form_save">Salvar</string>
+
+    <!-- Erros de validação -->
+    <string name="error_required">Campo obrigatório</string>
+    <string name="error_too_long">Texto muito longo</string>
+    <string name="error_not_a_number">Digite apenas números</string>
+    <string name="error_year_range">Informe um ano a partir de %1$d</string>
+    <string name="error_total_range">Informe um valor entre 1 e %1$d</string>
+    <string name="error_rating_range">A nota deve estar entre 0 e 10</string>
+
+    <!-- Parcial: telas em Views (XML) -->
+    <string name="views_list_title">Livros (Views XML)</string>
+    <string name="views_detail_title">Detalhe do livro</string>
+    <string name="views_cover_description">Capa do livro</string>
+    <string name="views_author_unknown">Autor desconhecido</string>
+    <string name="views_synopsis_missing">Sinopse não disponível.</string>
+    <string name="views_pages_format">%1$d páginas</string>
+    <string name="views_read_pages_format">%1$d de %2$d páginas lidas (%3$d%%)</string>
+    <string name="views_read_more">Li mais 10 páginas</string>
+    <string name="views_reset">Zerar leitura</string>
+    <string name="views_finished">Concluído</string>
+    <string name="views_in_progress">Lendo</string>
+    <string name="views_not_started">Não iniciado</string>
+    <string name="views_year_format">Publicado em %1$d</string>
+</resources>

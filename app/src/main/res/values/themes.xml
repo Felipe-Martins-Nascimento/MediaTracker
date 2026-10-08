@@ -1,0 +1,7 @@
+<resources>
+    <!-- Tema base. As telas em Compose têm tema próprio (MediaTrackerTheme); este serve às telas em Views
+         (Material Components) e à janela do app antes do Compose desenhar. Segue claro/escuro do sistema. -->
+    <style name="Base.Theme.MediaTracker" parent="Theme.Material3.DayNight.NoActionBar" />
+
+    <style name="Theme.MediaTracker" parent="Base.Theme.MediaTracker" />
+</resources>
