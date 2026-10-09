@@ -34,8 +34,40 @@ jobs:
       - name: Permitir executar o gradlew
         run: chmod +x gradlew
 
+      # A saida do Gradle vai para build.log (e tambem aparece no log do passo),
+      # para o passo seguinte conseguir resumir o erro caso o build falhe.
       - name: Rodar testes unitarios e compilar o app (debug)
-        run: ./gradlew testDebugUnitTest assembleDebug --stacktrace
+        run: |
+          set +e
+          ./gradlew testDebugUnitTest assembleDebug --stacktrace --console=plain > build.log 2>&1
+          status=$?
+          cat build.log
+          exit $status
+
+      # Se o build falhar, publica um resumo do erro como "anotacao" na pagina da execucao
+      # (aparece no topo da pagina, sem precisar abrir o log inteiro).
+      - name: Resumir o erro
+        if: failure()
+        run: |
+          python3 - <<'PY'
+          lines = open('build.log', encoding='utf-8', errors='replace').read().splitlines()
+          parts = []
+          kotlin = [l for l in lines if l.startswith('e: ')][:8]
+          if kotlin:
+              parts.append('ERROS DE CODIGO:\n' + '\n'.join(kotlin))
+          failed = [l.strip() for l in lines if l.strip().endswith(' FAILED')][:8]
+          if failed:
+              parts.append('TESTES QUE FALHARAM:\n' + '\n'.join(failed))
+          for i, l in enumerate(lines):
+              if 'What went wrong' in l:
+                  parts.append('\n'.join(lines[i:i + 9]))
+                  break
+          if not parts:
+              parts.append('ULTIMAS LINHAS:\n' + '\n'.join(lines[-15:]))
+          text = '\n\n'.join(parts)[:3500]
+          text = text.replace('%', '%25').replace('\r', '').replace('\n', '%0A')
+          print('::error title=Resumo do erro::' + text)
+          PY
 
       - name: Guardar relatorio dos testes
         if: always()
