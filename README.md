@@ -6,7 +6,7 @@ buscados na [Open Library](https://openlibrary.org/dev/docs/api/search) e salvos
 
 Trabalho individual da disciplina AC322A (Programação Mobile), UNAERP.
 
-> **Autor:** Felipe Martins Nascimento - 8842399
+> **Autor:** Felipe Martins Nascimento - RA 842399
 
 ## Objetivo
 
