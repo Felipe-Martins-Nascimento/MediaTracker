@@ -5,8 +5,9 @@ import com.felipe.mediatracker.ui.search.SearchError
 import com.felipe.mediatracker.ui.search.SearchState
 import com.felipe.mediatracker.ui.search.SearchViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.test.TestScope
+import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
@@ -24,15 +25,21 @@ class SearchViewModelTest {
     // lazy: o ViewModel só nasce dentro do teste, depois que a regra já trocou o Dispatchers.Main.
     private val viewModel by lazy { SearchViewModel(DefaultMediaRepository(local, remote)) }
 
+    // O uiState usa WhileSubscribed: só atualiza com alguém coletando.
+    // Coletar com dispatcher "unconfined" faz a coleta começar na hora, antes do primeiro assert.
+    private fun TestScope.collectUiState() {
+        backgroundScope.launch(UnconfinedTestDispatcher(testScheduler)) { viewModel.uiState.collect {} }
+    }
+
     @Test
     fun initialState_isIdle() = runTest {
-        backgroundScope.launch { viewModel.uiState.collect {} }
+        collectUiState()
         assertEquals(SearchState.Idle, viewModel.uiState.value.state)
     }
 
     @Test
     fun shortQuery_doesNotHitTheNetwork() = runTest {
-        backgroundScope.launch { viewModel.uiState.collect {} }
+        collectUiState()
 
         viewModel.search("a")
 
@@ -42,7 +49,7 @@ class SearchViewModelTest {
 
     @Test
     fun successfulSearch_emitsResults() = runTest {
-        backgroundScope.launch { viewModel.uiState.collect {} }
+        collectUiState()
 
         viewModel.search("casmurro")
 
@@ -53,7 +60,7 @@ class SearchViewModelTest {
 
     @Test
     fun emptyResponse_emitsEmpty() = runTest {
-        backgroundScope.launch { viewModel.uiState.collect {} }
+        collectUiState()
         remote.result = emptyList()
 
         viewModel.search("zzzz")
@@ -63,7 +70,7 @@ class SearchViewModelTest {
 
     @Test
     fun networkFailure_emitsNetworkError_andRetryRecovers() = runTest {
-        backgroundScope.launch { viewModel.uiState.collect {} }
+        collectUiState()
         remote.failWith = networkError()
 
         viewModel.search("casmurro")
@@ -76,7 +83,7 @@ class SearchViewModelTest {
 
     @Test
     fun addedItem_isReportedAsSaved() = runTest {
-        backgroundScope.launch { viewModel.uiState.collect {} }
+        collectUiState()
         viewModel.search("casmurro")
         val item = (viewModel.uiState.value.state as SearchState.Results).items.single()
 
